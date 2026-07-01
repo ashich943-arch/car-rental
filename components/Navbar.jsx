@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import Logo from "./Logo";
 import { brands, categories, bodyTypes } from "@/lib/data";
 import {
@@ -16,9 +17,20 @@ const services = [
 const locationsList = ["Dubai Marina", "Downtown Dubai", "Business Bay", "Palm Jumeirah", "DXB Airport"];
 
 export default function Navbar() {
+  const router = useRouter();
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
   const [mobileSub, setMobileSub] = useState(null);
+  const [searchOpen, setSearchOpen] = useState(false);
+  const [query, setQuery] = useState("");
+
+  const submitSearch = (e) => {
+    e.preventDefault();
+    const q = query.trim();
+    setSearchOpen(false);
+    setQuery("");
+    router.push(q ? `/cars?q=${encodeURIComponent(q)}` : "/cars");
+  };
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);
@@ -37,6 +49,29 @@ export default function Navbar() {
         scrolled ? "border-b border-line/70 bg-ink/80 backdrop-blur-xl" : "bg-gradient-to-b from-black/70 to-transparent"
       }`}
     >
+      {/* search overlay */}
+      {searchOpen && (
+        <div className="fixed inset-0 z-[60] bg-ink/90 backdrop-blur-sm" onClick={() => setSearchOpen(false)}>
+          <div className="wrap pt-28" onClick={(e) => e.stopPropagation()}>
+            <form onSubmit={submitSearch} className="mx-auto flex max-w-2xl items-center gap-3 rounded-2xl border border-line bg-char2 p-3">
+              <Search className="ml-2 h-5 w-5 shrink-0 text-brand" />
+              <input
+                autoFocus
+                value={query}
+                onChange={(e) => setQuery(e.target.value)}
+                placeholder="Search cars, brands, categories…"
+                className="w-full bg-transparent text-white outline-none placeholder:text-white/40"
+              />
+              <button type="submit" className="btn-red shrink-0 px-5 py-2">Search</button>
+              <button type="button" onClick={() => setSearchOpen(false)} aria-label="Close" className="grid h-9 w-9 shrink-0 place-items-center rounded-md text-white/70 hover:bg-char hover:text-white">
+                <X className="h-5 w-5" />
+              </button>
+            </form>
+            <p className="mx-auto mt-3 max-w-2xl text-center text-xs text-muted">Press Enter to search the fleet</p>
+          </div>
+        </div>
+      )}
+
       <div className="wrap flex h-[72px] items-center justify-between gap-4">
         <Link href="/" aria-label="LTS Car Rental home" className="shrink-0">
           <Logo />
@@ -132,7 +167,7 @@ export default function Navbar() {
 
         {/* right cluster */}
         <div className="hidden items-center gap-2 lg:flex">
-          <button aria-label="Search" className="grid h-9 w-9 place-items-center rounded-md text-white/70 hover:bg-char2 hover:text-white">
+          <button onClick={() => setSearchOpen(true)} aria-label="Search" className="grid h-9 w-9 place-items-center rounded-md text-white/70 hover:bg-char2 hover:text-white">
             <Search className="h-[18px] w-[18px]" />
           </button>
           <button aria-label="Language and currency" className="flex h-9 items-center gap-1 rounded-md px-2 text-xs font-medium text-white/70 hover:bg-char2 hover:text-white">

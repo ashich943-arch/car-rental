@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useMemo, useState, useEffect } from "react";
 import { useSearchParams } from "next/navigation";
 import CarCard from "./CarCard";
 import { cars, brands, categories, bodyTypes, transmissions } from "@/lib/data";
@@ -8,16 +8,23 @@ import { SlidersHorizontal, X } from "lucide-react";
 
 export default function CarsExplorer() {
   const params = useSearchParams();
-  const initialBrand = params.get("brand") || "";
-  const initialCat = params.get("category") || "";
+  const brandParam = params.get("brand") || "";
+  const catParam = params.get("category") || "";
+  const bodyParam = params.get("body") || "";
+  const q = (params.get("q") || "").toLowerCase().trim();
 
-  const [brand, setBrand] = useState(initialBrand);
-  const [category, setCategory] = useState(initialCat);
-  const [body, setBody] = useState("");
+  const [brand, setBrand] = useState(brandParam);
+  const [category, setCategory] = useState(catParam);
+  const [body, setBody] = useState(bodyParam);
   const [trans, setTrans] = useState("");
   const [maxPrice, setMaxPrice] = useState(5000);
   const [sort, setSort] = useState("featured");
   const [showFilters, setShowFilters] = useState(false);
+
+  // keep filters in sync when the URL changes (e.g. clicking a brand in the navbar)
+  useEffect(() => { setBrand(brandParam); }, [brandParam]);
+  useEffect(() => { setCategory(catParam); }, [catParam]);
+  useEffect(() => { setBody(bodyParam); }, [bodyParam]);
 
   const filtered = useMemo(() => {
     let list = cars.filter((c) =>
@@ -25,13 +32,14 @@ export default function CarsExplorer() {
       (!category || c.category === category) &&
       (!body || c.body === body) &&
       (!trans || c.transmission === trans) &&
+      (!q || `${c.name} ${c.brand} ${c.category} ${c.body}`.toLowerCase().includes(q)) &&
       c.daily <= maxPrice
     );
     if (sort === "low") list = [...list].sort((a, b) => a.daily - b.daily);
     if (sort === "high") list = [...list].sort((a, b) => b.daily - a.daily);
     if (sort === "featured") list = [...list].sort((a, b) => Number(b.featured) - Number(a.featured));
     return list;
-  }, [brand, category, body, trans, maxPrice, sort]);
+  }, [brand, category, body, trans, maxPrice, sort, q]);
 
   const reset = () => { setBrand(""); setCategory(""); setBody(""); setTrans(""); setMaxPrice(5000); };
 

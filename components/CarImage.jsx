@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 
-export default function CarImage({ src, alt, fallback = "" }) {
+export default function CarImage({ src, alt, fallback = "", pos = "center" }) {
   const [ok, setOk] = useState(Boolean(src));
 
   if (!ok) {
@@ -17,6 +17,7 @@ export default function CarImage({ src, alt, fallback = "" }) {
     <img
       src={src}
       alt={alt}
+      style={{ objectPosition: pos }}
       className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
       loading="lazy"
       onError={() => setOk(false)}

@@ -20,7 +20,7 @@ export default function CarCard({ car, priceMode = "daily" }) {
           </div>
         )}
         {/* car photo (falls back to brand name until /public/cars image is added) */}
-        <CarImage src={car.image} alt={car.name} fallback={brandName(car.brand)} />
+        <CarImage src={car.image} alt={car.name} fallback={brandName(car.brand)} pos={car.pos} />
       </div>
 
       <div className="flex flex-1 flex-col p-4">

@@ -3,7 +3,10 @@ import { brands } from "@/lib/data";
 import { ArrowRight } from "lucide-react";
 import BrandLogo from "../BrandLogo";
 
+const withLogo = ["lamborghini", "ferrari", "rolls-royce", "bentley", "mercedes-benz", "range-rover", "porsche", "bmw"];
+
 export default function BrandStrip() {
+  const shown = brands.filter((b) => withLogo.includes(b.slug));
   return (
     <section className="bg-[#f3f3f3] py-14 text-ink">
       <div className="wrap">
@@ -17,7 +20,7 @@ export default function BrandStrip() {
         </div>
 
         <div className="grid grid-cols-3 gap-3 sm:grid-cols-4 lg:grid-cols-8">
-          {brands.map((b) => (
+          {shown.map((b) => (
             <Link
               key={b.slug}
               href={`/cars?brand=${b.slug}`}

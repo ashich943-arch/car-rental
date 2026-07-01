@@ -93,8 +93,8 @@ export default function Footer() {
         <div className="mt-12 flex flex-col gap-4 border-t border-line pt-6 text-xs text-muted sm:flex-row sm:items-center sm:justify-between">
           <p>© {new Date().getFullYear()} LTS Car Rental — {CONTACT.domain}. All rights reserved.</p>
           <div className="flex flex-wrap items-center gap-4">
-            <Link href="#" className="hover:text-brand">Terms</Link>
-            <Link href="#" className="hover:text-brand">Privacy</Link>
+            <Link href="/terms" className="hover:text-brand">Terms</Link>
+            <Link href="/privacy" className="hover:text-brand">Privacy</Link>
             <Link href="#" className="hover:text-brand">Sitemap</Link>
             <div className="flex items-center gap-1.5">
               {["VISA", "MC", "CASH", "CRYPTO"].map((p) => (

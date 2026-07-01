@@ -24,7 +24,7 @@ export default function BlogPage() {
       <section className="wrap py-16">
         {/* Featured */}
         <Reveal>
-          <article className="group grid grid-cols-1 overflow-hidden rounded-2xl border border-line bg-char2 lg:grid-cols-2">
+          <Link href={`/blog/${featured.slug}`} className="group grid grid-cols-1 overflow-hidden rounded-2xl border border-line bg-char2 transition-all hover:border-brand/60 lg:grid-cols-2">
             <div className="photo relative aspect-[16/10] w-full lg:aspect-auto">
               {/* Add cover image at /public/blog/{slug}.jpg */}
               <span className="absolute left-4 top-4 rounded-full bg-brand px-3 py-1 text-xs font-semibold text-white">
@@ -42,14 +42,14 @@ export default function BlogPage() {
               <p className="mt-3 text-sm leading-relaxed text-muted">{featured.excerpt}</p>
               <span className="link-arrow mt-5">Read article <ArrowRight className="h-4 w-4" /></span>
             </div>
-          </article>
+          </Link>
         </Reveal>
 
         {/* Grid */}
         <div className="mt-8 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {rest.map((post, i) => (
             <Reveal key={post.slug} delay={i * 0.05}>
-              <article className="group flex h-full flex-col overflow-hidden rounded-2xl border border-line bg-char2 transition-all duration-300 hover:-translate-y-1 hover:border-brand/60 hover:shadow-card">
+              <Link href={`/blog/${post.slug}`} className="group flex h-full flex-col overflow-hidden rounded-2xl border border-line bg-char2 transition-all duration-300 hover:-translate-y-1 hover:border-brand/60 hover:shadow-card">
                 <div className="photo relative aspect-[16/10] w-full">
                   {/* Add cover image at /public/blog/{slug}.jpg */}
                   <span className="absolute left-3 top-3 rounded-full bg-ink/80 px-3 py-1 text-xs font-semibold text-white backdrop-blur">
@@ -67,7 +67,7 @@ export default function BlogPage() {
                   <p className="mt-2 line-clamp-3 flex-1 text-sm text-muted">{post.excerpt}</p>
                   <span className="link-arrow mt-4">Read more <ArrowRight className="h-4 w-4" /></span>
                 </div>
-              </article>
+              </Link>
             </Reveal>
           ))}
         </div>
