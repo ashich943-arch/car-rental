@@ -19,7 +19,7 @@ export default function BrandsPage() {
               <Reveal key={b.slug} delay={(i % 4) * 0.05}>
                 <Link href={`/cars?brand=${b.slug}`} className="group flex h-44 flex-col items-center justify-center gap-4 rounded-2xl border border-line bg-char2 transition-all hover:-translate-y-1 hover:border-brand/60 hover:shadow-card">
                   <span className="flex h-20 w-32 items-center justify-center rounded-xl bg-white p-4">
-                    <BrandLogo slug={b.slug} name={b.name} src={b.logo} className="max-h-10" />
+                    <BrandLogo slug={b.slug} name={b.name} src={b.logo} scale={b.logoScale} className="max-h-10" />
                   </span>
                   <span className="inline-flex items-center gap-1 text-xs text-muted group-hover:text-brand">{count} cars <ArrowRight className="h-3 w-3" /></span>
                 </Link>

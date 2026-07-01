@@ -24,7 +24,7 @@ export default function BrandStrip() {
               className="group flex flex-col items-center gap-3 rounded-2xl border border-black/[0.06] bg-white px-3 py-5 shadow-sm transition-all duration-200 hover:-translate-y-1 hover:shadow-md"
             >
               <span className="flex h-12 w-full items-center justify-center">
-                <BrandLogo slug={b.slug} name={b.name} src={b.logo} />
+                <BrandLogo slug={b.slug} name={b.name} src={b.logo} scale={b.logoScale} />
               </span>
               <span className="text-center text-xs font-semibold text-ink/75 transition-colors group-hover:text-brand">
                 {b.name}

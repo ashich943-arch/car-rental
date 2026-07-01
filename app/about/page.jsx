@@ -26,17 +26,19 @@ export default function AboutPage() {
       <section className="bg-ink py-16">
         <div className="wrap grid gap-10 lg:grid-cols-2">
           <Reveal>
-            <div className="aspect-[4/3] w-full rounded-2xl photo" />
+            <div className="relative aspect-[4/3] w-full overflow-hidden rounded-2xl photo">
+              <img src="https://lts-car-rental.com/wp-content/uploads/2026/02/Adobe-Express-file.png" alt="LTS Car Rental" className="absolute inset-0 h-full w-full object-cover" />
+            </div>
           </Reveal>
           <Reveal delay={0.1}>
-            <h2 className="font-display text-2xl font-bold text-white sm:text-3xl">A fleet for every journey</h2>
+            <h2 className="font-display text-2xl font-bold text-white sm:text-3xl">Going the Extra Mile — Every Time</h2>
             <p className="mt-4 text-sm leading-relaxed text-muted">
-              From a weekend in a Lamborghini to a month behind the wheel of a Range Rover, we make luxury accessible.
-              Every rental includes comprehensive insurance, free delivery across Dubai, and a team that responds in minutes.
+              With LTS, renting a car isn't just a transaction — it's an experience. Based in Dubai, we specialize in
+              delivering luxury, performance, and prestige to clients who expect nothing but the best.
             </p>
             <p className="mt-4 text-sm leading-relaxed text-muted">
-              We started with a simple belief: renting a car should be as refined as the car itself. Today we serve
-              thousands of residents and visitors who expect more than the ordinary.
+              Today, we proudly serve tourists, business executives, influencers, and car enthusiasts who want more than
+              just a rental — they want an experience.
             </p>
             <div className="mt-8 grid grid-cols-2 gap-4 sm:grid-cols-4">
               {stats.map((s) => (
@@ -45,6 +47,27 @@ export default function AboutPage() {
                   <p className="mt-1 text-xs text-muted">{s.label}</p>
                 </div>
               ))}
+            </div>
+          </Reveal>
+        </div>
+      </section>
+
+      <section className="bg-ink pb-4">
+        <div className="wrap grid gap-6 lg:grid-cols-2">
+          <Reveal>
+            <div className="h-full rounded-2xl border border-line bg-char2 p-8">
+              <p className="eyebrow mb-2">Our Mission</p>
+              <p className="text-lg font-medium leading-relaxed text-white">
+                To provide a smooth, transparent, and premium car rental experience that matches the luxury lifestyle of Dubai.
+              </p>
+            </div>
+          </Reveal>
+          <Reveal delay={0.1}>
+            <div className="h-full rounded-2xl border border-line bg-char2 p-8">
+              <p className="eyebrow mb-2">Our Vision</p>
+              <p className="text-lg font-medium leading-relaxed text-white">
+                To become one of Dubai's most trusted names in luxury and exotic car rentals — known for reliability, exclusivity, and elite service.
+              </p>
             </div>
           </Reveal>
         </div>

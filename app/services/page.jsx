@@ -15,7 +15,7 @@ export default function ServicesPage() {
 
       <section id="chauffeur" className="scroll-mt-24 bg-ink py-16">
         <div className="wrap grid items-center gap-10 lg:grid-cols-2">
-          <Reveal><div className="aspect-[4/3] rounded-2xl photo" /></Reveal>
+          <Reveal><div className="relative aspect-[4/3] overflow-hidden rounded-2xl photo"><img src="https://marcem.com.pk/wp-content/uploads/2025/08/Chauffeur-1-1-1.webp" alt="Chauffeur service" className="absolute inset-0 h-full w-full object-cover" /></div></Reveal>
           <Reveal delay={0.1}>
             <UserCheck className="h-9 w-9 text-brand" strokeWidth={1.5} />
             <h2 className="mt-4 font-display text-2xl font-bold text-white sm:text-3xl">Chauffeur Service</h2>
@@ -47,7 +47,7 @@ export default function ServicesPage() {
             </ul>
             <Link href="/contact" className="btn-red mt-7">Arrange a transfer</Link>
           </Reveal>
-          <Reveal className="order-1 lg:order-2"><div className="aspect-[4/3] rounded-2xl photo" /></Reveal>
+          <Reveal className="order-1 lg:order-2"><div className="relative aspect-[4/3] overflow-hidden rounded-2xl photo"><img src="https://ar-airport-car-service1.files.wordpress.com/2024/02/airportcarsgosport-airport-slide-2.jpg" alt="Airport transfer" className="absolute inset-0 h-full w-full object-cover" /></div></Reveal>
         </div>
       </section>
 
