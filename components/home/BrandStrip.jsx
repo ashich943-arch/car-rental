@@ -3,10 +3,7 @@ import { brands } from "@/lib/data";
 import { ArrowRight } from "lucide-react";
 import BrandLogo from "../BrandLogo";
 
-const withLogo = ["lamborghini", "ferrari", "rolls-royce", "bentley", "mercedes-benz", "range-rover", "porsche", "bmw"];
-
 export default function BrandStrip() {
-  const shown = brands.filter((b) => withLogo.includes(b.slug));
   return (
     <section className="bg-[#f3f3f3] py-14 text-ink">
       <div className="wrap">
@@ -19,15 +16,15 @@ export default function BrandStrip() {
           </Link>
         </div>
 
-        <div className="grid grid-cols-3 gap-3 sm:grid-cols-4 lg:grid-cols-8">
-          {shown.map((b) => (
+        <div className="grid grid-cols-3 gap-3 sm:grid-cols-4 lg:grid-cols-7">
+          {brands.map((b) => (
             <Link
               key={b.slug}
               href={`/cars?brand=${b.slug}`}
               className="group flex flex-col items-center gap-3 rounded-2xl border border-black/[0.06] bg-white px-3 py-5 shadow-sm transition-all duration-200 hover:-translate-y-1 hover:shadow-md"
             >
               <span className="flex h-12 w-full items-center justify-center">
-                <BrandLogo slug={b.slug} name={b.name} />
+                <BrandLogo slug={b.slug} name={b.name} src={b.logo} />
               </span>
               <span className="text-center text-xs font-semibold text-ink/75 transition-colors group-hover:text-brand">
                 {b.name}

@@ -103,7 +103,7 @@ export default function Navbar() {
                   <ul className="space-y-1">
                     {bodyTypes.map((b) => (
                       <li key={b}>
-                        <Link href="/cars" className="block rounded px-2 py-1.5 text-sm text-white/80 hover:bg-char2 hover:text-brand">
+                        <Link href={`/cars?body=${encodeURIComponent(b)}`} className="block rounded px-2 py-1.5 text-sm text-white/80 hover:bg-char2 hover:text-brand">
                           {b}
                         </Link>
                       </li>
