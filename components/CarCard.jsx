@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { aed, brandName } from "@/lib/data";
 import { Users, Gauge, Fuel, ArrowRight } from "lucide-react";
+import CarImage from "./CarImage";
 
 export default function CarCard({ car, priceMode = "daily" }) {
   const priceLabel = { daily: "per day", weekly: "per week", monthly: "per month", hourly: "per hour" }[priceMode];
@@ -18,10 +19,8 @@ export default function CarCard({ car, priceMode = "daily" }) {
             {car.tag && <span className="rounded-md border border-line bg-ink/80 px-2 py-1 text-[11px] font-semibold text-white">{car.tag}</span>}
           </div>
         )}
-        {/* Replace with <Image> once /public/cars photos are added */}
-        <div className="absolute inset-0 grid place-items-center text-xs uppercase tracking-[0.3em] text-white/15">
-          {brandName(car.brand)}
-        </div>
+        {/* car photo (falls back to brand name until /public/cars image is added) */}
+        <CarImage src={car.image} alt={car.name} fallback={brandName(car.brand)} />
       </div>
 
       <div className="flex flex-1 flex-col p-4">

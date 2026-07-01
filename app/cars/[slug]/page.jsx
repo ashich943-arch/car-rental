@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import { cars, carBySlug, brandName, categoryName, aed } from "@/lib/data";
 import BookingForm from "@/components/BookingForm";
 import CarRail from "@/components/CarRail";
+import Gallery from "@/components/Gallery";
 import Reveal from "@/components/Reveal";
 import { Check, Cog, Users, Fuel, Gauge, Zap, Calendar, Palette } from "lucide-react";
 
@@ -50,18 +51,12 @@ export default function CarDetail({ params }) {
           {/* LEFT — gallery + info */}
           <div>
             <Reveal>
-              <div className="relative aspect-[16/10] w-full overflow-hidden rounded-2xl photo">
-                <div className="absolute left-4 top-4 flex gap-2">
-                  {car.badge && <span className="rounded-md bg-brand px-2.5 py-1 text-xs font-bold text-white">{car.badge}</span>}
-                  {car.tag && <span className="rounded-md border border-line bg-ink/80 px-2.5 py-1 text-xs font-semibold text-white">{car.tag}</span>}
-                </div>
-                <div className="absolute inset-0 grid place-items-center text-xs uppercase tracking-[0.4em] text-white/15">{car.name}</div>
-              </div>
-              <div className="mt-3 grid grid-cols-4 gap-3">
-                {[...Array(4)].map((_, i) => (
-                  <div key={i} className="aspect-[16/10] rounded-lg border border-line photo" />
-                ))}
-              </div>
+              <Gallery
+                images={car.images || [car.image]}
+                name={car.name}
+                badge={car.badge}
+                tag={car.tag}
+              />
             </Reveal>
 
             <div className="mt-8">
